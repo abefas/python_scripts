@@ -2,7 +2,7 @@ from pytube import YouTube
 from sys import argv
 
 #Change this
-path = '/home/abefas/Downloads'
+path = '/home/user/Downloads'
 
 def print_manual():
     print('\n' + '\033[1m' + 'NAME' + '\033[0m')
