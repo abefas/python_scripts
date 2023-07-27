@@ -2,7 +2,7 @@ from pytube import YouTube
 from sys import argv
 
 #Change this
-path = '/home/user/Downloads'
+path = '/home/abefas/Downloads/'
 
 def print_manual():
     print('\n' + '\033[1m' + 'NAME' + '\033[0m')
@@ -38,17 +38,22 @@ seconds = (minutes % 1) * 60
 print("Length: %dm %ds" % (minutes ,seconds))
 print("Views: ", yt.views)
 
+def print_stream_content(stream_query):
+    for stream in stream_query:
+        print(f"{stream}")
 
 if arg2 == None:
     stream = yt.streams.get_by_resolution(1080)
     stream.download(path)
 elif arg2 == "-a":
-    print(yt.streams.filter(only_audio=True))
+    stream = yt.streams.filter(only_audio=True)
+    print_stream_content(stream)
     itag = input("Choose itag to download: ")
     stream = yt.streams.get_by_itag(itag)
     stream.download(path) 
 elif arg2 == "--mp4":
-    print(yt.streams.filter(file_extension='mp4'))
+    stream = yt.streams.filter(file_extension='mp4')
+    print_stream_content(stream)
     itag = input("Choose itag to download: ")
     stream = yt.streams.get_by_itag(itag)
     stream.download(path) 
@@ -62,13 +67,10 @@ elif arg2 == "--480p":
     stream = yt.streams.get_by_resolution(480)
     stream.download(path)
 elif arg2 == "-la":
-    print(yt.streams.filter(adaptive=True))
+    stream = yt.streams.filter(adaptive=True)
+    print_stream_content(stream)
     itag = input("Choose itag to download: ")
     stream = yt.streams.get_by_itag(itag)
     stream.download(path) 
 else:
     print_manual() 
-
-                  
-
-
